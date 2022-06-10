@@ -1,0 +1,12 @@
+D:\DEV\Git\VortexdeCode\VortexdeCode\VortexdeCodeBL\bin\Debug\net6.0\VortexdeCodeBL.deps.json
+D:\DEV\Git\VortexdeCode\VortexdeCode\VortexdeCodeBL\bin\Debug\net6.0\VortexdeCodeBL.dll
+D:\DEV\Git\VortexdeCode\VortexdeCode\VortexdeCodeBL\bin\Debug\net6.0\VortexdeCodeBL.pdb
+D:\DEV\Git\VortexdeCode\VortexdeCode\VortexdeCodeBL\obj\Debug\net6.0\VortexdeCodeBL.csproj.AssemblyReference.cache
+D:\DEV\Git\VortexdeCode\VortexdeCode\VortexdeCodeBL\obj\Debug\net6.0\VortexdeCodeBL.GeneratedMSBuildEditorConfig.editorconfig
+D:\DEV\Git\VortexdeCode\VortexdeCode\VortexdeCodeBL\obj\Debug\net6.0\VortexdeCodeBL.AssemblyInfoInputs.cache
+D:\DEV\Git\VortexdeCode\VortexdeCode\VortexdeCodeBL\obj\Debug\net6.0\VortexdeCodeBL.AssemblyInfo.cs
+D:\DEV\Git\VortexdeCode\VortexdeCode\VortexdeCodeBL\obj\Debug\net6.0\VortexdeCodeBL.csproj.CoreCompileInputs.cache
+D:\DEV\Git\VortexdeCode\VortexdeCode\VortexdeCodeBL\obj\Debug\net6.0\VortexdeCodeBL.dll
+D:\DEV\Git\VortexdeCode\VortexdeCode\VortexdeCodeBL\obj\Debug\net6.0\refint\VortexdeCodeBL.dll
+D:\DEV\Git\VortexdeCode\VortexdeCode\VortexdeCodeBL\obj\Debug\net6.0\VortexdeCodeBL.pdb
+D:\DEV\Git\VortexdeCode\VortexdeCode\VortexdeCodeBL\obj\Debug\net6.0\ref\VortexdeCodeBL.dll
