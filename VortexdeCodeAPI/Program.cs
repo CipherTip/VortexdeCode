@@ -17,8 +17,6 @@ builder.Services.AddSwaggerGen();
 //dependency for DBContext
 builder.Services.AddDbContext<VortexDBContext>(
     o =>o.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer")));
-//builder.Services.AddDbContext<AuthDbContext>(
-//    o => o.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer")));
 
 var app = builder.Build();
 
