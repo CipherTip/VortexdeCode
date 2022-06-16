@@ -10,3 +10,5 @@ D:\DEV\Git\VortexdeCode\VortexdeCode\VortexdeCodeDL\obj\Debug\net6.0\VortexdeCod
 D:\DEV\Git\VortexdeCode\VortexdeCode\VortexdeCodeDL\obj\Debug\net6.0\refint\VortexdeCodeDL.dll
 D:\DEV\Git\VortexdeCode\VortexdeCode\VortexdeCodeDL\obj\Debug\net6.0\VortexdeCodeDL.pdb
 D:\DEV\Git\VortexdeCode\VortexdeCode\VortexdeCodeDL\obj\Debug\net6.0\ref\VortexdeCodeDL.dll
+D:\DEV\Git\VortexdeCode\VortexdeCode\VortexdeCodeDL\bin\Debug\net6.0\VortexdeCodeDL.runtimeconfig.json
+D:\DEV\Git\VortexdeCode\VortexdeCode\VortexdeCodeDL\obj\Debug\net6.0\VortexdeCodeDL.genruntimeconfig.cache
