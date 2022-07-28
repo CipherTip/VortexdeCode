@@ -4,7 +4,7 @@ using Microsoft.Identity.Web.Resource;
 
 namespace VortexdeCodeAPI.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     //[RequiredScope(RequiredScopesConfigurationKey = "AzureAd:Scopes")]

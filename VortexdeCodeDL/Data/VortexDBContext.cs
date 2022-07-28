@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
 using System;
@@ -12,7 +13,7 @@ using VortexdeCodeDL.UnitOfWork;
 
 namespace VortexdeCodeDL.Data
 {
-    public class VortexDBContext: IdentityDbContext<ApplicationUser>
+    public class VortexDBContext: IdentityDbContext<IdentityUser>
     {
         private readonly IOsUnitOfWork _osUnitOfWork;
         public VortexDBContext(DbContextOptions<VortexDBContext> options)
