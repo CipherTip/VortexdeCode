@@ -5,7 +5,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Web;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using VortexdeCodeBL;
 using VortexdeCodeDL.Data;
+using VortexdeCodeDL.Models;
+
 
 var builder = WebApplication.CreateBuilder(args);
 ConfigurationManager configuration = builder.Configuration;
@@ -21,7 +24,7 @@ builder.Services.AddDbContext<VortexDBContext>(
     o =>o.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer")));
 
 // For Identity
-builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
 {
     options.User.RequireUniqueEmail = false;
 })
@@ -56,9 +59,14 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddScoped<Interface1, Class1>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+
+
+
 
 if (app.Environment.IsDevelopment())
 {
