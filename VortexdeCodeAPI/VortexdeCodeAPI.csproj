@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\VortexdeCodeBL\VortexdeCodeBL.csproj" />
     <ProjectReference Include="..\VortexdeCodeDL\VortexdeCodeDL.csproj" />
   </ItemGroup>
 
