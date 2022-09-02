@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.Serialization;
 
-namespace VortexdeCodeDL.Models
+namespace VortexdeCodeDL.Entitys
 {
     [Table("AspNetUsers")]
     public class ApplicationUser : IdentityUser

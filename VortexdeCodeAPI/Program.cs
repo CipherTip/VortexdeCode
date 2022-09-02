@@ -5,9 +5,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Web;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using VortexdeCodeAPI.Services;
+using VortexdeCodeAPI.ViewModel;
 using VortexdeCodeBL;
 using VortexdeCodeDL.Data;
-using VortexdeCodeDL.Models;
+using VortexdeCodeDL.Entitys;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -60,7 +62,18 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddScoped<Interface1, Class1>();
+builder.Services.AddScoped<ISecurityGuardBL, SecurityGuardBL>();
+
+
+builder.Services.AddTransient<IEmailSender, EmailSender>();
+builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration);
+
+builder.Services.ConfigureApplicationCookie(o => {
+    o.ExpireTimeSpan = TimeSpan.FromDays(5);
+    o.SlidingExpiration = true;
+});
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

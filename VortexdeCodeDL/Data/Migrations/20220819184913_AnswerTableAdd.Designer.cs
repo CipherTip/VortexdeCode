@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VortexdeCodeDL.Data;
 
@@ -11,9 +12,10 @@ using VortexdeCodeDL.Data;
 namespace VortexdeCodeDL.Data.Migrations
 {
     [DbContext(typeof(VortexDBContext))]
-    partial class VortexDBContextModelSnapshot : ModelSnapshot
+    [Migration("20220819184913_AnswerTableAdd")]
+    partial class AnswerTableAdd
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -226,7 +228,7 @@ namespace VortexdeCodeDL.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("VortexdeCodeDL.Entitys.Answer", b =>
+            modelBuilder.Entity("VortexdeCodeDL.Models.Answer", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -251,7 +253,7 @@ namespace VortexdeCodeDL.Data.Migrations
                     b.ToTable("Answers");
                 });
 
-            modelBuilder.Entity("VortexdeCodeDL.Entitys.Floor", b =>
+            modelBuilder.Entity("VortexdeCodeDL.Models.Floor", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -271,7 +273,7 @@ namespace VortexdeCodeDL.Data.Migrations
                     b.ToTable("Floors");
                 });
 
-            modelBuilder.Entity("VortexdeCodeDL.Entitys.Issue", b =>
+            modelBuilder.Entity("VortexdeCodeDL.Models.Issue", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -304,7 +306,7 @@ namespace VortexdeCodeDL.Data.Migrations
                     b.ToTable("Issues");
                 });
 
-            modelBuilder.Entity("VortexdeCodeDL.Entitys.Question", b =>
+            modelBuilder.Entity("VortexdeCodeDL.Models.Question", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -329,27 +331,7 @@ namespace VortexdeCodeDL.Data.Migrations
                     b.ToTable("Questions");
                 });
 
-            modelBuilder.Entity("VortexdeCodeDL.Entitys.TimeSlot", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Hour")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("HourValue")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("TimeSlots");
-                });
-
-            modelBuilder.Entity("VortexdeCodeDL.Entitys.ApplicationUser", b =>
+            modelBuilder.Entity("VortexdeCodeDL.Models.ApplicationUser", b =>
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
@@ -427,9 +409,9 @@ namespace VortexdeCodeDL.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("VortexdeCodeDL.Entitys.Answer", b =>
+            modelBuilder.Entity("VortexdeCodeDL.Models.Answer", b =>
                 {
-                    b.HasOne("VortexdeCodeDL.Entitys.Question", "Question")
+                    b.HasOne("VortexdeCodeDL.Models.Question", "Question")
                         .WithMany()
                         .HasForeignKey("QuestionID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -438,9 +420,9 @@ namespace VortexdeCodeDL.Data.Migrations
                     b.Navigation("Question");
                 });
 
-            modelBuilder.Entity("VortexdeCodeDL.Entitys.Question", b =>
+            modelBuilder.Entity("VortexdeCodeDL.Models.Question", b =>
                 {
-                    b.HasOne("VortexdeCodeDL.Entitys.Floor", "Floor")
+                    b.HasOne("VortexdeCodeDL.Models.Floor", "Floor")
                         .WithMany()
                         .HasForeignKey("FloorID")
                         .OnDelete(DeleteBehavior.Cascade)

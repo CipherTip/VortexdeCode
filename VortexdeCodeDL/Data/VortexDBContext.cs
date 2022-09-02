@@ -8,7 +8,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
-using VortexdeCodeDL.Models;
+using VortexdeCodeDL.Entitys;
 using VortexdeCodeDL.UnitOfWork;
 
 namespace VortexdeCodeDL.Data
@@ -42,8 +42,12 @@ namespace VortexdeCodeDL.Data
             
 
         }
-        public DbSet<Models.Issue> Issues { get; set; }
+        public DbSet<Issue> Issues { get; set; }
+        public DbSet<Floor> Floors { get; set; }
+        public DbSet<Question> Questions { get; set; }
+        public DbSet<Answer> Answers { get; set; }
+        public DbSet<TimeSlot> TimeSlots { get; set; }
 
-
+        
     }
 }
