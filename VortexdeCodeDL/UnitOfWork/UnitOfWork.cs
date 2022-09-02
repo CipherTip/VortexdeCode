@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VortexdeCodeDL.Data;
-using VortexdeCodeDL.Models;
+using VortexdeCodeDL.Entitys;
 using VortexdeCodeDL.Repository;
 
 namespace VortexdeCodeDL.UnitOfWork
@@ -17,8 +17,10 @@ namespace VortexdeCodeDL.UnitOfWork
             this.context = context;
         }
         private GenericRepository<Issue> issueRepository;
-        //private GenericRepository<Course> courseRepository;
-
+        private GenericRepository<Floor> floorRepository;
+        private GenericRepository<Question> questionRepository;
+        private GenericRepository<Answer> answerRepository;
+        private GenericRepository<TimeSlot> timeSlotRepository;
 
 
         public GenericRepository<Issue> IssueRepository
@@ -34,18 +36,57 @@ namespace VortexdeCodeDL.UnitOfWork
             }
         }
 
-        //public GenericRepository<Course> CourseRepository
-        //{
-        //    get
-        //    {
+        public GenericRepository<Floor> FloorRepository
+        {
+            get
+            {
 
-        //        if (this.courseRepository == null)
-        //        {
-        //            this.courseRepository = new GenericRepository<Course>(context);
-        //        }
-        //        return courseRepository;
-        //    }
-        //}
+                if (this.floorRepository == null)
+                {
+                    this.floorRepository = new GenericRepository<Floor>(context);
+                }
+                return floorRepository;
+            }
+        }
+        public GenericRepository<Question> QuestionRepository
+        {
+            get
+            {
+
+                if (this.questionRepository == null)
+                {
+                    this.questionRepository = new GenericRepository<Question>(context);
+                }
+                return questionRepository;
+            }
+        }
+        public GenericRepository<Answer> AnswerRepository
+        {
+            get
+            {
+
+                if (this.answerRepository == null)
+                {
+                    this.answerRepository = new GenericRepository<Answer>(context);
+                }
+                return answerRepository;
+            }
+        }
+
+        public GenericRepository<TimeSlot> TimeSlotRepository
+        {
+            get
+            {
+
+                if (this.timeSlotRepository == null)
+                {
+                    this.timeSlotRepository = new GenericRepository<TimeSlot>(context);
+                }
+                return timeSlotRepository;
+            }
+        }
+
+
 
         public void Save()
         {

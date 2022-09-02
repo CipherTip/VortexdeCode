@@ -1,6 +1,11 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using VortexdeCodeAPI.Responses;
+using VortexdeCodeAPI.Services;
+using VortexdeCodeAPI.ViewModel;
 using VortexdeCodeBL;
+using VortexdeCodeDL.Entitys;
+using VortexdeCodeDL.Models;
 
 namespace VortexdeCodeAPI.Controllers
 {
@@ -8,19 +13,54 @@ namespace VortexdeCodeAPI.Controllers
     [ApiController]
     public class SecurityGuardController : ControllerBase
     {
-        private Interface1 _Interface1;
+        private ISecurityGuardBL _ISecurityGuardBL;
+        private readonly IEmailSender _sender;
+        //_sender.SendEmailAsync("ciphertip@gmail.com","Test-email - Subject", "Test-email - Body");
 
-        public SecurityGuardController(Interface1 interface1)
+        public SecurityGuardController(ISecurityGuardBL iSecurityGuardBL, IEmailSender sender)
         {
-            _Interface1 = interface1;
+            _ISecurityGuardBL = iSecurityGuardBL;
+            _sender = sender;
+        }
+        [HttpGet]
+        [Route("GetFloors")]
+        //[ApiExplorerSettings(IgnoreApi = true)]
+        public FloorResponse GetFloors()
+        {
+            FloorResponse response = new FloorResponse();
+            IEnumerable<Floor> floorList = _ISecurityGuardBL.getFloors();
+            if (floorList != null)
+            {
+                response.Floors = (from floor in floorList
+                                   where floor.Is_Actve == true
+                                   select new floor { Id = floor.Id, Name = floor.Name }).AsEnumerable();
+            }
+
+            return response;
         }
 
-        [HttpGet(Name = "TestMethod")]
-        public IEnumerable<WeatherForecast> Get()
+        [HttpPost]
+        [Route("GetQuestion")]
+        public QuestionAnswerModel GetQuestion([FromBody] QuestionRequestModel request)
         {
 
-            _Interface1.testMethod();
-            return null;
+            QuestionAnswerModel QuestionAnswerList = _ISecurityGuardBL.getQuestionAnswerById(request.FloorID);
+           
+
+            return QuestionAnswerList;
         }
+
+        [HttpPost]
+        [Route("SetAnswer")]
+        public QuestionAnswerModel SetAnswer([FromBody] QuestionRequestModel request)
+        {
+
+            QuestionAnswerModel QuestionAnswerList = _ISecurityGuardBL.getQuestionAnswerById(request.FloorID);
+
+
+            return QuestionAnswerList;
+        }
+
+
     }
 }

@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using VortexdeCodeAPI.Responses;
 using VortexdeCodeAPI.ViewModel;
-using VortexdeCodeDL.Models;
+using VortexdeCodeDL.Entitys;
 using System.Security.Claims;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
