@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
 using System;
@@ -7,146 +8,46 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
-using VortexdeCodeDL.Models;
+using VortexdeCodeDL.Entitys;
 using VortexdeCodeDL.UnitOfWork;
 
 namespace VortexdeCodeDL.Data
 {
-    public class VortexDBContext: IdentityDbContext<ApplicationUser>
+    public class VortexDBContext: IdentityDbContext<IdentityUser>
     {
-        private readonly IOsUnitOfWork _osUnitOfWork;
+        
         public VortexDBContext(DbContextOptions<VortexDBContext> options)
             : base(options)
         {
                     
         }
-        public DbSet<Models.Issue> Issues { get; set; }
-
-
-        public int Save()
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            return _osUnitOfWork.Save();
-        }
 
-        public Task<int> SaveASync()
-        {
-            return _osUnitOfWork.SaveAsync();
-        }
+            base.OnModelCreating(modelBuilder);
 
-        public void Dispose()
-        {
-            _osUnitOfWork.Dispose();
-        }
+            modelBuilder.Entity<ApplicationUser>()
+                .Property(e => e.FirstName)
+                .HasMaxLength(250);
 
-        public int Count<T>() where T : class
-        {
-            return _osUnitOfWork.GetRepository<T>().Count();
-        }
+            modelBuilder.Entity<ApplicationUser>()
+                .Property(e => e.LastName)
+                .HasMaxLength(250);
+            modelBuilder.Entity<ApplicationUser>()
+                .Property(e => e.RefreshToken)
+                .HasMaxLength(250);
+            modelBuilder.Entity<ApplicationUser>()
+               .Property(e => e.RefreshTokenExpiryTime);
+               
+            
 
-        public int Count<T>(Expression<Func<T, bool>> predicate) where T : class
-        {
-            return _osUnitOfWork.GetRepository<T>().Count(predicate);
         }
+        public DbSet<Issue> Issues { get; set; }
+        public DbSet<Floor> Floors { get; set; }
+        public DbSet<Question> Questions { get; set; }
+        public DbSet<Answer> Answers { get; set; }
+        public DbSet<TimeSlot> TimeSlots { get; set; }
 
-        public IQueryable<T> GetAll<T>() where T : class
-        {
-            return _osUnitOfWork.GetRepository<T>().GetAll(null, null, null, null, null);
-        }
-
-        public IQueryable<T> GetAll<T>(Expression<Func<T, bool>> predicate) where T : class
-        {
-            return _osUnitOfWork.GetRepository<T>().GetAll(predicate, null, null, null, null);
-        }
-
-        public IQueryable<T> GetAll<T>(Expression<Func<T, bool>> predicate = null,
-         Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null,
-         Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
-         int? skip = null, int? take = null) where T : class
-        {
-            return _osUnitOfWork.GetRepository<T>().GetAll(predicate, include, orderBy, skip, take);
-        }
-
-        public IQueryable<T> GetAll<T>(Expression<Func<T, bool>> predicate = null,
-         Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null,
-        string orderBy = null, string orderDirection = "asc",
-         int? skip = null, int? take = null) where T : class
-        {
-            return _osUnitOfWork.GetRepository<T>().GetAll(predicate, include, orderBy, orderDirection, skip, take);
-        }
-
-        public Task<IQueryable<T>> GetAllAsync<T>(Expression<Func<T, bool>> predicate = null,
-         Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null,
-         Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
-         int? skip = null, int? take = null) where T : class
-        {
-            return _osUnitOfWork.GetRepository<T>().GetAllAsync(predicate, include, orderBy, skip, take);
-        }
-
-        public Task<IQueryable<T>> GetAllAsync<T>(Expression<Func<T, bool>> predicate = null,
-         Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null,
-        string orderBy = null, string orderDirection = "asc",
-         int? skip = null, int? take = null) where T : class
-        {
-            return _osUnitOfWork.GetRepository<T>().GetAllAsync(predicate, include, orderBy, orderDirection, skip, take);
-        }
-
-        public Task<IQueryable<T>> GetAllAsync<T>() where T : class
-        {
-            return _osUnitOfWork.GetRepository<T>().GetAllAsync(null, null, null, null, null);
-        }
-
-        public Task<IQueryable<T>> GetAllAsync<T>(Expression<Func<T, bool>> predicate) where T : class
-        {
-            return _osUnitOfWork.GetRepository<T>().GetAllAsync(predicate, null, null, null, null);
-        }
-
-        public IQueryable<T> GetAll<T>(Func<IQueryable<T>, IIncludableQueryable<T, object>> include) where T : class
-        {
-            return _osUnitOfWork.GetRepository<T>().GetAll(null, include, null, null, null);
-        }
-
-        public Task<IQueryable<T>> GetAllAsync<T>(Func<IQueryable<T>, IIncludableQueryable<T, object>> include) where T : class
-        {
-            return _osUnitOfWork.GetRepository<T>().GetAllAsync(null, include, null, null, null);
-        }
-
-        public T GetSingle<T>(
-         Expression<Func<T, bool>> predicate = null,
-         Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null) where T : class
-        {
-            return _osUnitOfWork.GetRepository<T>().GetSingle(predicate, include);
-        }
-
-        public Task<T> GetSingleAsync<T>(
-          Expression<Func<T, bool>> predicate = null,
-          Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null) where T : class
-        {
-            return _osUnitOfWork.GetRepository<T>().GetSingleAsync(predicate, include);
-        }
-
-        public virtual void Add<T>(T entity) where T : class
-        {
-            _osUnitOfWork.GetRepository<T>().Add(entity);
-        }
-
-        public virtual void AddAsync<T>(T entity) where T : class
-        {
-            _osUnitOfWork.GetRepository<T>().AddAsync(entity);
-        }
-
-        public T Update<T>(T entity) where T : class
-        {
-            return _osUnitOfWork.GetRepository<T>().Update(entity);
-        }
-
-        public void Delete<T>(T toDelete) where T : class
-        {
-            _osUnitOfWork.GetRepository<T>().Delete(toDelete);
-        }
-
-        public void Delete<T>(Expression<Func<T, bool>> predicate) where T : class
-        {
-            _osUnitOfWork.GetRepository<T>().Delete(predicate);
-        }
+        
     }
 }

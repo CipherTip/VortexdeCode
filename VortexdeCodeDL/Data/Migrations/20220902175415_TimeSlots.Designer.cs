@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VortexdeCodeDL.Data;
 
@@ -11,9 +12,10 @@ using VortexdeCodeDL.Data;
 namespace VortexdeCodeDL.Data.Migrations
 {
     [DbContext(typeof(VortexDBContext))]
-    partial class VortexDBContextModelSnapshot : ModelSnapshot
+    [Migration("20220902175415_TimeSlots")]
+    partial class TimeSlots
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -340,9 +342,6 @@ namespace VortexdeCodeDL.Data.Migrations
                     b.Property<string>("Hour")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("HourValue")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VortexdeCodeDL.Data;
 
@@ -11,9 +12,10 @@ using VortexdeCodeDL.Data;
 namespace VortexdeCodeDL.Data.Migrations
 {
     [DbContext(typeof(VortexDBContext))]
-    partial class VortexDBContextModelSnapshot : ModelSnapshot
+    [Migration("20220729210945_CustomFields")]
+    partial class CustomFields
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -226,52 +228,7 @@ namespace VortexdeCodeDL.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("VortexdeCodeDL.Entitys.Answer", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("AnswerWord")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("Is_Actve")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("QuestionID")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("QuestionID");
-
-                    b.ToTable("Answers");
-                });
-
-            modelBuilder.Entity("VortexdeCodeDL.Entitys.Floor", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<bool>("Is_Actve")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Floors");
-                });
-
-            modelBuilder.Entity("VortexdeCodeDL.Entitys.Issue", b =>
+            modelBuilder.Entity("VortexdeCodeDL.Models.Issue", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -304,52 +261,7 @@ namespace VortexdeCodeDL.Data.Migrations
                     b.ToTable("Issues");
                 });
 
-            modelBuilder.Entity("VortexdeCodeDL.Entitys.Question", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("FloorID")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("Is_Actve")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("QuestionWord")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("FloorID");
-
-                    b.ToTable("Questions");
-                });
-
-            modelBuilder.Entity("VortexdeCodeDL.Entitys.TimeSlot", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Hour")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("HourValue")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("TimeSlots");
-                });
-
-            modelBuilder.Entity("VortexdeCodeDL.Entitys.ApplicationUser", b =>
+            modelBuilder.Entity("VortexdeCodeDL.Models.ApplicationUser", b =>
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
@@ -425,28 +337,6 @@ namespace VortexdeCodeDL.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("VortexdeCodeDL.Entitys.Answer", b =>
-                {
-                    b.HasOne("VortexdeCodeDL.Entitys.Question", "Question")
-                        .WithMany()
-                        .HasForeignKey("QuestionID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Question");
-                });
-
-            modelBuilder.Entity("VortexdeCodeDL.Entitys.Question", b =>
-                {
-                    b.HasOne("VortexdeCodeDL.Entitys.Floor", "Floor")
-                        .WithMany()
-                        .HasForeignKey("FloorID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Floor");
                 });
 #pragma warning restore 612, 618
         }

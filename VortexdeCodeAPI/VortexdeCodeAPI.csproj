@@ -16,10 +16,12 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.Identity.Web" Version="1.25.0" />
+    <PackageReference Include="SendGrid" Version="9.28.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.1" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\VortexdeCodeBL\VortexdeCodeBL.csproj" />
     <ProjectReference Include="..\VortexdeCodeDL\VortexdeCodeDL.csproj" />
   </ItemGroup>
 
