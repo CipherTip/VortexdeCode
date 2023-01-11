@@ -13,5 +13,6 @@ namespace VortexdeCodeBL
         IQueryable<Object> testMethod();
         IEnumerable<Floor> getFloors();
         QuestionAnswerModel getQuestionAnswerById(int FloorID);
+        string SetInspection_Report(InspectionReport inspection);
     }
 }

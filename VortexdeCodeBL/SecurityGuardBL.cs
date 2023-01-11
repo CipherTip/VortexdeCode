@@ -90,8 +90,6 @@ namespace VortexdeCodeBL
 
                     });
 
-
-
                 }
 
 
@@ -104,8 +102,14 @@ namespace VortexdeCodeBL
             }
             return objModel;
         }
-       
 
+        string ISecurityGuardBL.SetInspection_Report(InspectionReport inspection)
+        {
+            unitOfWork.InspectionReport.Insert(inspection);
+
+            return null;
+
+        }
 
     }
 }
