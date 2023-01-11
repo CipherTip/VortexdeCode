@@ -52,13 +52,28 @@ namespace VortexdeCodeAPI.Controllers
 
         [HttpPost]
         [Route("SetAnswer")]
-        public QuestionAnswerModel SetAnswer([FromBody] QuestionRequestModel request)
+        public string SetAnswer([FromBody] InspectionReportViewModel request)
         {
+            InspectionReport objModel = new InspectionReport();
+            objModel.TimeSlotId = request.TimeSlotId;
+            objModel.FloorId = request.FloorId;
+            objModel.QuestionId = request.QuestionId;
+            objModel.AnswerId = request.AnswerId;
+            objModel.Notes = request.Notes;
+            objModel.LogEntryTime = request.LogEntryTime;
+            objModel.IsEdited = request.IsEdited;
+            objModel.ReasonForEdit = request.ReasonForEdit;
+            objModel.IsManualEntry = request.IsManualEntry;
+            objModel.CreatedBy = request.CreatedBy;
+            objModel.CreatedDate = request.CreatedDate;
+            objModel.ModifiedBy = request.ModifiedBy;
+            objModel.ModifiedDate = request.ModifiedDate;
 
-            QuestionAnswerModel QuestionAnswerList = _ISecurityGuardBL.getQuestionAnswerById(request.FloorID);
 
 
-            return QuestionAnswerList;
+
+            return _ISecurityGuardBL.SetInspection_Report(objModel);
+            
         }
 
 

@@ -47,7 +47,8 @@ namespace VortexdeCodeDL.Data
         public DbSet<Question> Questions { get; set; }
         public DbSet<Answer> Answers { get; set; }
         public DbSet<TimeSlot> TimeSlots { get; set; }
-
+        public DbSet<InspectionReport> InspectionReport { get; set; }
         
+
     }
 }

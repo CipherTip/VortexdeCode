@@ -21,7 +21,7 @@ namespace VortexdeCodeDL.UnitOfWork
         private GenericRepository<Question> questionRepository;
         private GenericRepository<Answer> answerRepository;
         private GenericRepository<TimeSlot> timeSlotRepository;
-
+        private GenericRepository<InspectionReport> inspectionReportRepository;
 
         public GenericRepository<Issue> IssueRepository
         {
@@ -83,6 +83,18 @@ namespace VortexdeCodeDL.UnitOfWork
                     this.timeSlotRepository = new GenericRepository<TimeSlot>(context);
                 }
                 return timeSlotRepository;
+            }
+        }
+        public GenericRepository<InspectionReport> InspectionReport
+        {
+            get
+            {
+
+                if (this.inspectionReportRepository == null)
+                {
+                    this.inspectionReportRepository = new GenericRepository<InspectionReport>(context);
+                }
+                return inspectionReportRepository;
             }
         }
 

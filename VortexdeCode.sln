@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32414.318
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VortexdeCodeBL", "VortexdeCodeBL\VortexdeCodeBL.csproj", "{B99B7F50-2B5B-4411-8229-0CCBBD5CBA08}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VortexdeCodeBL", "VortexdeCodeBL\VortexdeCodeBL.csproj", "{B99B7F50-2B5B-4411-8229-0CCBBD5CBA08}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VortexdeCodeDL", "VortexdeCodeDL\VortexdeCodeDL.csproj", "{75BC021B-B7E0-41D3-A1AC-453C1A541DAB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VortexdeCodeDL", "VortexdeCodeDL\VortexdeCodeDL.csproj", "{75BC021B-B7E0-41D3-A1AC-453C1A541DAB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VortexdeCodeAPI", "VortexdeCodeAPI\VortexdeCodeAPI.csproj", "{F052365F-E767-42D7-AF3D-0516665B0D52}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VortexdeCodeAPI", "VortexdeCodeAPI\VortexdeCodeAPI.csproj", "{F052365F-E767-42D7-AF3D-0516665B0D52}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -97,7 +97,14 @@ namespace VortexdeCodeAPI.Controllers
                 {
                     Token = new JwtSecurityTokenHandler().WriteToken(token),
                     RefreshToken = refreshToken,
-                    Expiration = token.ValidTo
+                    Expiration = token.ValidTo,
+                    User = new
+                    {
+                        FullName= user.FirstName+" "+user.LastName,
+                        Email= user.Email,
+                        Roles = userRoles
+
+                    }
                 });
             }
             return Unauthorized();
@@ -139,7 +146,9 @@ namespace VortexdeCodeAPI.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User already exists!" });
 
             ApplicationUser user = new()
-            {
+            {  
+                FirstName = model.FirstName,
+                LastName = model.LastName,
                 Email = model.Email,
                 SecurityStamp = Guid.NewGuid().ToString(),
                 UserName = model.Username
@@ -147,20 +156,49 @@ namespace VortexdeCodeAPI.Controllers
             var result = await _userManager.CreateAsync(user, model.Password);
             if (!result.Succeeded)
                 return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User creation failed! Please check user details and try again." });
-
-            if (!await _roleManager.RoleExistsAsync(UserRoles.Admin))
-                await _roleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
-            if (!await _roleManager.RoleExistsAsync(UserRoles.User))
-                await _roleManager.CreateAsync(new IdentityRole(UserRoles.User));
-
-            if (await _roleManager.RoleExistsAsync(UserRoles.Admin))
+            if(model.Role!=string.Empty)
             {
-                await _userManager.AddToRoleAsync(user, UserRoles.Admin);
+                switch (model.Role)
+                {
+                    case UserRoles.Admin :
+
+                        if (!await _roleManager.RoleExistsAsync(UserRoles.Admin))
+                            await _roleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
+                        if (await _roleManager.RoleExistsAsync(UserRoles.Admin))
+                        {
+                            await _userManager.AddToRoleAsync(user, UserRoles.Admin);
+                        }
+                        break;
+
+                    case UserRoles.User:
+
+                        if (!await _roleManager.RoleExistsAsync(UserRoles.User))
+                            await _roleManager.CreateAsync(new IdentityRole(UserRoles.User));
+
+
+                        if (await _roleManager.RoleExistsAsync(UserRoles.User))
+                        {
+                            await _userManager.AddToRoleAsync(user, UserRoles.User);
+                        }
+                        break;
+                    case UserRoles.Security:
+
+                        if (!await _roleManager.RoleExistsAsync(UserRoles.Security))
+                            await _roleManager.CreateAsync(new IdentityRole(UserRoles.Security));
+
+
+                        if (await _roleManager.RoleExistsAsync(UserRoles.Security))
+                        {
+                            await _userManager.AddToRoleAsync(user, UserRoles.Security);
+                        }
+                        break;
+
+                }
             }
-            if (await _roleManager.RoleExistsAsync(UserRoles.Admin))
-            {
-                await _userManager.AddToRoleAsync(user, UserRoles.User);
-            }
+            
+
+            
+           
             return Ok(new Response { Status = "Success", Message = "User created successfully!" });
         }
 
